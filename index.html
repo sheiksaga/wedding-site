@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Tanja & Sangeeth's Wedding - May 30, 2026, Gränna, Sweden">
+    <title>Tanja & Sangeeth</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav-menu" aria-label="Main navigation">
+        <ul class="nav-list">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#story">Story</a></li>
+            <li><a href="#wedding">Wedding</a></li>
+            <li><a href="#rsvp">RSVP</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <header id="home" class="hero">
+            <h1>Tanja & Sangeeth</h1>
+            <p class="date">May 30, 2026</p>
+            <p class="location">Gränna, Sweden</p>
+
+            <div class="hero-buttons">
+                <a href="#story" class="hero-btn">Our Story</a>
+                <a href="#wedding" class="hero-btn">Details</a>
+                <a href="#rsvp" class="hero-btn">RSVP</a>
+            </div>
+        </header>
+
+        <!-- Language Selector (fixed position) -->
+        <div class="hero-language">
+            <div class="language-selector">
+                <button class="lang-toggle" aria-expanded="false" aria-haspopup="true">
+                    <span>EN</span>
+                    <span class="arrow">▼</span>
+                </button>
+                <div class="lang-dropdown" role="menu">
+                    <button class="lang-btn" data-lang="en" role="menuitem">English</button>
+                    <button class="lang-btn" data-lang="sv" role="menuitem">Svenska</button>
+                    <button class="lang-btn" data-lang="ml" role="menuitem">മലയാളം</button>
+                    <button class="lang-btn" data-lang="ta" role="menuitem">தமிழ்</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Story / Quiz Section -->
+        <section id="story">
+            <h2>The Story Thus Far</h2>
+            <div class="event-grid">
+                <div class="event-card">
+                    <div class="quiz-container">
+                        <div class="quiz-text" id="quizText" aria-live="polite">
+                            <!-- Quiz content injected by JS -->
+                        </div>
+                        <div class="quiz-buttons">
+                            <button id="calculate-btn">Calculate Score</button>
+                            <button class="retake-btn" id="retake-btn" style="display:none;">Retake</button>
+                        </div>
+                        <div id="score"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Wedding Details -->
+        <section id="wedding">
+            <h2>The Wedding</h2>
+            <div class="event-grid">
+                <div class="event-card">
+                    <h3>Ceremony</h3>
+                    <p>2:00 PM</p>
+                    <p>Gränna Church</p>
+                </div>
+                <div class="event-card">
+                    <h3>Reception</h3>
+                    <p>6:00 PM</p>
+                    <p>Åsens by</p>
+                </div>
+                <div class="event-card">
+                    <h3>Accommodation</h3>
+                    <p>Hotels nearby in Gränna</p>
+                    <ul>
+                        <li>Hotel 1: Contact details</li>
+                        <li>Hotel 2: Contact details</li>
+                    </ul>
+                </div>
+                <div class="event-card">
+                    <h3>Transportation</h3>
+                    <p>Bus available from Gothenburg</p>
+                </div>
+                <div class="event-card">
+                    <h3>Contact</h3>
+                    <p>Wedding coordinators available</p>
+                </div>
+                <div class="event-card">
+                    <h3>Dress Code</h3>
+                    <p>Smart casual / Semi-formal</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- RSVP Section -->
+        <section id="rsvp">
+            <h2>RSVP</h2>
+            <div class="event-grid">
+                <div class="event-card">
+                    <form class="rsvp-form" id="rsvpForm" action="https://docs.google.com/forms/d/e/1FAIpQLSfF968quhJj3jy18NW2bHVW9nxpJny9Gkzqa9K2tmLBFO2lDw/formResponse" method="POST" novalidate>
+                        <div class="form-group">
+                            <label for="rsvp-name">Name</label>
+                            <input type="text" id="rsvp-name" name="entry.2141441407" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="rsvp-email">Email</label>
+                            <input type="email" id="rsvp-email" name="entry.283877148" required>
+                        </div>
+
+                        <fieldset>
+                            <legend>Attending?</legend>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="entry.1024195105" value="Yes" required>
+                                    <span>Yes</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="entry.1024195105" value="No">
+                                    <span>No</span>
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Dietary</legend>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="entry.719430750" value="Vegetarian" required>
+                                    <span>Vegetarian</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="entry.719430750" value="Vegan">
+                                    <span>Vegan</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="entry.719430750" value="None">
+                                    <span>None</span>
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <fieldset>
+                            <legend>Bus from Gothenburg?</legend>
+                            <div class="radio-group">
+                                <label class="radio-label">
+                                    <input type="radio" name="entry.400771826" value="Yes" required>
+                                    <span>Yes</span>
+                                </label>
+                                <label class="radio-label">
+                                    <input type="radio" name="entry.400771826" value="No">
+                                    <span>No</span>
+                                </label>
+                            </div>
+                        </fieldset>
+
+                        <div class="form-group">
+                            <label for="rsvp-comments">Comments</label>
+                            <input type="text" id="rsvp-comments" name="entry.969509761">
+                        </div>
+
+                        <div class="honeypot" aria-hidden="true">
+                            <label for="honeypot">Leave blank
+                                <input type="text" id="honeypot" name="honeypot" tabindex="-1" autocomplete="off">
+                            </label>
+                        </div>
+
+                        <button type="submit" class="reply-button">Submit RSVP</button>
+                    </form>
+                    <div id="confirmMsg" class="rsvp-confirmation">Thank you! Your RSVP has been recorded.</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Photos Section -->
+        <section id="photos">
+            <h2>Photos & Videos</h2>
+            <div class="upload-wrapper">
+                <button id="uploadBtn" class="upload-button">
+                    📷 Upload Photo/Video
+                </button>
+                <input type="file" id="fileInput" accept="image/*,video/*" capture="environment" multiple>
+            </div>
+            <div id="uploadStatus" class="upload-status"></div>
+
+            <!-- Gallery Carousel -->
+            <div class="gallery-carousel" id="galleryCarousel" style="display: none;">
+                <div class="carousel-track" id="carouselTrack">
+                    <!-- Uploaded images will load here -->
+                </div>
+                <button class="carousel-nav prev" id="carouselPrev">‹</button>
+                <button class="carousel-nav next" id="carouselNext">›</button>
+                <p class="gallery-empty-msg">Be the first to share a photo!</p>
+            </div>
+        </section>
+
+        <!-- Interactive Footer -->
+        <footer class="interactive-footer">
+            <div class="footer-content">
+
+              <!-- Weather Widgets -->
+              <div class="weather-section">
+                <div class="weather-card" id="weather-granna">
+                  <div class="weather-icon">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="32" cy="32" r="12" fill="#f59e0b"/>
+                      <g stroke="#f59e0b" stroke-width="2" stroke-linecap="round">
+                        <line x1="32" y1="8" x2="32" y2="14"/>
+                        <line x1="32" y1="50" x2="32" y2="56"/>
+                        <line x1="8" y1="32" x2="14" y2="32"/>
+                        <line x1="50" y1="32" x2="56" y2="32"/>
+                        <line x1="14.9" y1="14.9" x2="19.5" y2="19.5"/>
+                        <line x1="44.5" y1="44.5" x2="49.1" y2="49.1"/>
+                        <line x1="14.9" y1="49.1" x2="19.5" y2="44.5"/>
+                        <line x1="44.5" y1="19.5" x2="49.1" y2="14.9"/>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="weather-info">
+                    <span class="weather-location">Gränna, Sweden</span>
+                    <span class="weather-temp">--°C</span>
+                    <span class="weather-condition">Loading...</span>
+                  </div>
+                </div>
+
+                <div class="weather-card" id="weather-kollam">
+                  <div class="weather-icon">
+                    <svg viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <circle cx="32" cy="32" r="12" fill="#f59e0b"/>
+                      <g stroke="#f59e0b" stroke-width="2" stroke-linecap="round">
+                        <line x1="32" y1="8" x2="32" y2="14"/>
+                        <line x1="32" y1="50" x2="32" y2="56"/>
+                        <line x1="8" y1="32" x2="14" y2="32"/>
+                        <line x1="50" y1="32" x2="56" y2="32"/>
+                        <line x1="14.9" y1="14.9" x2="19.5" y2="19.5"/>
+                        <line x1="44.5" y1="44.5" x2="49.1" y2="49.1"/>
+                        <line x1="14.9" y1="49.1" x2="19.5" y2="44.5"/>
+                        <line x1="44.5" y1="19.5" x2="49.1" y2="14.9"/>
+                      </g>
+                    </svg>
+                  </div>
+                  <div class="weather-info">
+                    <span class="weather-location">Kollam, Kerala</span>
+                    <span class="weather-temp">--°C</span>
+                    <span class="weather-condition">Loading...</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Fika & Sadya Split Icons -->
+              <div class="culture-section">
+                <div class="culture-split" id="culture-split" role="button" tabindex="0" aria-label="Fika and Sadya cultural facts">
+                  <div class="culture-half fika-half">
+                    <img class="culture-icon" src="footer_images/cinnamon-roll.png" alt="Cinnamon roll">
+                  </div>
+                  <div class="culture-half sadya-half">
+                    <img class="culture-icon" src="footer_images/sadhya.png" alt="Sadya">
+                  </div>
+                  <div class="culture-divider"></div>
+                </div>
+                <div class="culture-tooltip" id="culture-tooltip">
+                  <p class="culture-fact"></p>
+                  <span class="culture-label"></span>
+                </div>
+              </div>
+
+              <!-- Labradoodle Element -->
+              <div class="dog-section">
+                <div class="dog-paw" id="dog-paw" role="img" aria-label="Labradoodle welcome">
+                  <img src="footer_images/paw.png" alt="Paw print">
+                </div>
+                <p class="dog-message">We're excited to celebrate with you!</p>
+              </div>
+
+            </div>
+
+            <!-- Design Saga Closing -->
+            <div class="design-saga">
+              <p>Two cultures, one story.</p>
+              <a href="mailto:gandhi.sangeeth@gmail.com" class="design-email">Design Saga</a>
+            </div>
+        </footer>
+
+    <!-- Back to Top -->
+    <a href="#home" id="back-to-top" aria-label="Back to top">↑</a>
+
+    <!-- Scripts -->
+    <!-- Quiz Data Files (must load before app.js) -->
+    <script src="quiz/quiz-en.js"></script>
+    <script src="quiz/quiz-sv.js"></script>
+    <script src="quiz/quiz-ml.js"></script>
+    <script src="quiz/quiz-ta.js"></script>
+
+    <!-- Main Application Script -->
+    <script src="scripts/effects.js"></script>
+    <script src="scripts/app.js"></script>
+
+    <!-- Interactive Footer Script -->
+    <script src="scripts/footer-script.js"></script>
+</body>
+</html>

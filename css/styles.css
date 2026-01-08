@@ -1,0 +1,1540 @@
+/*
+========================================
+  WEDDING SITE - MINIMALIST STYLES
+========================================
+*/
+
+/* ========================================
+   CSS CUSTOM PROPERTIES
+   ======================================== */
+:root {
+  /* Typography */
+  --font-body: 'Futura', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-display: 'Migueto', cursive;
+  --font-ml: 'Noto Serif Malayalam', serif;
+  --font-ta: 'Noto Serif Tamil', serif;
+
+  /* Colors - Clean, minimalist palette */
+  --color-text: #000;
+  --color-text-muted: #000;
+  --color-bg: #fdfcfb;
+  --color-bg-alt: #f8f7f5;
+  --color-white: #ffffff;
+  --color-accent: #b8c6db;
+  --color-accent-warm: #e8d5c4;
+  --black: #000000;
+
+  /* Spacing */
+  --space-xs: 0.25rem;
+  --space-sm: 0.5rem;
+  --space-md: 1rem;
+  --space-lg: 1.5rem;
+  --space-xl: 2.5rem;
+  --space-2xl: 4rem;
+
+  /* Layout */
+  --max-width: 900px;
+  --section-padding: 5rem 1.5rem;
+
+  /* Effects */
+  --transition: 0.3s ease;
+}
+
+/* ========================================
+   LOCAL FONTS
+   ======================================== */
+@font-face {
+  font-family: 'Migueto';
+  src: url('../fonts/Migueto.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Futura';
+  src: url('../fonts/Futura-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Futura';
+  src: url('../fonts/Futura-LightOblique.otf') format('opentype');
+  font-weight: 300;
+  font-style: italic;
+}
+
+/* Malayalam & Tamil font support */
+:lang(ml) { --font-body: var(--font-ml); }
+:lang(ta) { --font-body: var(--font-ta); }
+:lang(ml) h1, :lang(ml) h2, :lang(ml) h3 { font-family: var(--font-ml); }
+:lang(ta) h1, :lang(ta) h2, :lang(ta) h3 { font-family: var(--font-ta); }
+
+/* ========================================
+   RESET & BASE
+   ======================================== */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #000; /* Darker text for better contrast */
+  background: var(--color-bg);
+}
+
+/* Semi-transparent background boxes for text readability on images */
+.event-card,
+.quiz-container,
+.rsvp-form,
+h1, h2, h3, p {
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+}
+
+h1, h2, h3 {
+  padding: 0.5rem 1rem;
+  display: inline-block;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ========================================
+   TYPOGRAPHY
+   ======================================== */
+h1 {
+  font-family: var(--font-display), 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  font-weight: 800;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+
+h3, h4 {
+  font-family: var(--font-display), 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+  backdrop-filter: none;
+  background: transparent;
+}
+
+h2 {
+  font-family: var(--font-display), 'Palatino Linotype', 'Book Antiqua', Palatino, serif;
+  font-weight: 600;
+  line-height: 1.2;
+  letter-spacing: 0.02em;
+}
+
+h1 { font-size: clamp(2.2rem, 6vw, 4rem); }
+h2 { font-size: clamp(1.6rem, 4vw, 2.2rem); margin-bottom: var(--space-lg); }
+h3 { font-size: 1.4rem; margin-bottom: var(--space-sm); }
+
+p {
+  color: var(--black);
+  background: transparent;
+  max-width: 65ch;
+  margin: 0 auto;
+  backdrop-filter: none;
+}
+
+/* ========================================
+   LAYOUT
+   ======================================== */
+section {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: var(--section-padding);
+  text-align: center;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+section > * {
+  max-width: var(--max-width);
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Section backgrounds */
+#story,
+#wedding,
+#rsvp,
+#photos {
+  background-color: var(--color-bg-alt);
+}
+
+/* Make all sections share the same background color style for consistency */
+#story { background-color: var(--color-bg-alt); }
+#wedding { background-color: var(--color-accent-warm); }
+#rsvp { background-color: var(--color-bg-alt); }
+#photos { background-color: var(--color-white); }
+
+/* ========================================
+   NAVIGATION
+   ======================================== */
+.nav-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  padding: 1rem;
+  z-index: 1000;
+  box-shadow: 0 1px 10px rgba(0, 0, 0, 0.05);
+  transform: translateY(-100%);
+  transition: transform 0.3s ease;
+}
+
+.nav-menu.visible {
+  transform: translateY(0);
+}
+
+.nav-list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.nav-list a {
+  display: block;
+  padding: var(--space-sm) var(--space-md);
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-text-muted);
+  border-radius: 4px;
+}
+
+/* ========================================
+   HERO SECTION
+   ======================================== */
+.hero {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 6rem 1.5rem 4rem;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.hero h1 {
+  margin-bottom: var(--space-md);
+  letter-spacing: 2px;
+}
+
+.hero .date {
+  font-size: 1.2rem;
+  color: var(--color-text);
+  padding: 0 1rem ;
+  margin-bottom: var(--space-sm);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+.hero .location {
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  padding: 0 1rem ;
+  letter-spacing: 3px;
+  color: var(--color-text);
+  margin-bottom: var(--space-xl);
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(10px);
+}
+
+/* Hero Buttons */
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+  margin-bottom: var(--space-xl);
+}
+
+.hero-btn {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid var(--color-text);
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+/* ========================================
+   LANGUAGE SELECTOR - Fixed Position
+   ======================================== */
+.hero-language {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  z-index: 1000;
+}
+
+.language-selector {
+  position: relative;
+}
+
+.lang-toggle {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--color-text-muted);
+  padding: 0.5rem 1rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.lang-dropdown {
+  position: absolute;
+  bottom: calc(100% + 0.5rem);
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-white);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition);
+  min-width: 100px;
+  z-index: 100;
+}
+
+.lang-btn {
+  display: block;
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--color-text);
+  cursor: pointer;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-text);
+}
+
+/* CSS-only dropdown toggle */
+.language-selector:hover .lang-dropdown,
+.lang-toggle:focus + .lang-dropdown,
+.lang-dropdown:focus-within {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ========================================
+   EVENT CARDS (Grid)
+   ======================================== */
+.event-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  width: 100%;
+  max-width: 1000px;
+  padding: var(--space-lg) 0;
+}
+
+.event-card {
+  padding: var(--space-xl);
+  background: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+.event-card h3 {
+    padding-bottom: var(--space-sm);
+  border-bottom: 1px solid var(--color-accent);
+  display: inline-block;
+}
+
+.event-card p {
+  margin: var(--space-sm) auto;
+  font-size: 0.95rem;
+}
+
+.event-card ul {
+  text-align: left;
+  margin-top: var(--space-md);
+  padding-left: var(--space-md);
+}
+
+.event-card li {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  margin-bottom: var(--space-xs);
+}
+
+.event-card li::marker {
+  color: var(--color-accent);
+}
+
+/* ========================================
+   QUIZ SECTION
+   ======================================== */
+.quiz-container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: var(--space-lg);
+  overflow-x: hidden;
+}
+
+.quiz-text {
+  font-size: 1rem;
+  line-height: 2;
+  margin-bottom: var(--space-lg);
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  hyphens: auto;
+}
+
+.quiz-text > * {
+  display: inline;
+  vertical-align: middle;
+}
+
+.quiz-text select {
+  background: rgba(255, 255, 255, 0.5);
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--color-text);
+  padding: 0.75rem 1rem;
+  font-size: 0.85rem;
+  margin: 2px 0;
+  max-width: 100%;
+  vertical-align: middle;
+  color: var(--color-text);
+}
+
+.quiz-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-sm);
+}
+
+.quiz-buttons button {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid var(--color-text);
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  color: var(--color-text);
+  cursor: pointer;
+}
+
+#score {
+  margin-top: var(--space-lg);
+  font-size: 1.1rem;
+  color: var(--color-text);
+}
+
+/* ========================================
+   RSVP FORM
+   ======================================== */
+.rsvp-form {
+  max-width: 480px;
+  margin: 0 auto;
+  text-align: left;
+  background: transparent;
+  backdrop-filter: none;
+  color: black;
+}
+
+.rsvp-form .form-group {
+  margin-bottom: var(--space-md);
+}
+
+.rsvp-form label {
+  display: block;
+  margin-bottom: var(--space-xs);
+  font-size: 0.9rem;
+  color: #000;
+}
+
+.rsvp-form input[type="text"],
+.rsvp-form input[type="email"] {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+  font-size: 1rem;
+  background: var(--color-white);
+  color: #000;
+  transition: var(--transition);
+}
+
+.rsvp-form input:focus {
+  outline: none;
+  border-color: var(--color-accent);
+}
+
+.rsvp-form fieldset {
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  padding: var(--space-md);
+  margin-bottom: var(--space-md);
+}
+
+.rsvp-form legend {
+  font-size: 0.85rem;
+  color: #000;
+  padding: 0 var(--space-sm);
+}
+
+.rsvp-form .radio-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+.rsvp-form .radio-label {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  cursor: pointer;
+  font-size: 0.9rem;
+  color: #000;
+}
+
+.rsvp-form input[type="radio"] {
+  accent-color: var(--color-text);
+}
+
+.reply-button {
+  width: 100%;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid var(--color-text);
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  color: var(--color-text);
+  cursor: pointer;
+  margin-top: var(--space-md);
+}
+
+.honeypot {
+  position: absolute;
+  left: -9999px;
+}
+
+.rsvp-confirmation {
+  display: none;
+  padding: var(--space-lg);
+  background: rgba(46, 204, 113, 0.1);
+  border-radius: 4px;
+  color: #27ae60;
+  text-align: center;
+  margin-top: var(--space-lg);
+}
+
+/* ========================================
+   PHOTO UPLOAD
+   ======================================== */
+.photos .upload-wrapper {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.upload-dropzone {
+  padding: 8rem 5rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.upload-icon {
+  font-size: 2.5rem;
+  margin-bottom: var(--space-md);
+}
+
+.upload-text {
+  color: var(--black);
+  font-size: 0.95rem;
+  margin-bottom: var(--space-sm);
+}
+
+.browse-button {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid var(--color-text);
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  color: var(--color-text);
+  cursor: pointer;
+  margin-top: var(--space-sm);
+}
+
+#fileInput {
+  display: none;
+}
+
+/* ========================================
+   UPLOAD BUTTON & STATUS
+   ======================================== */
+.upload-wrapper {
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.upload-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: 0.85rem 2rem;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border: 1px solid var(--color-text);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(5px);
+  color: var(--color-text);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.upload-button:hover {
+  background: rgba(255, 255, 255, 0.7);
+}
+
+.upload-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.upload-status {
+  margin-top: var(--space-md);
+  min-height: 2rem;
+}
+
+.upload-progress {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-sm);
+  color: var(--color-text);
+  font-size: 0.9rem;
+}
+
+.upload-progress-bar {
+  width: 100%;
+  max-width: 200px;
+  height: 4px;
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.upload-progress-fill {
+  height: 100%;
+  background: var(--color-text);
+  width: 0%;
+  transition: width 0.3s ease;
+}
+
+/* ========================================
+   TOAST NOTIFICATIONS
+   ======================================== */
+.toast {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%) translateY(100px);
+  background: rgba(0, 0, 0, 0.85);
+  color: #fff;
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  z-index: 2000;
+  opacity: 0;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  text-align: center;
+  max-width: 90%;
+}
+
+.toast.show {
+  transform: translateX(-50%) translateY(0);
+  opacity: 1;
+}
+
+.toast.success {
+  background: rgba(39, 174, 96, 0.95);
+}
+
+.toast.error {
+  background: rgba(231, 76, 60, 0.95);
+}
+
+/* ========================================
+   GALLERY CAROUSEL
+   ======================================== */
+.gallery-carousel {
+  width: 100%;
+  max-width: 700px;
+  margin: var(--space-xl) auto 0;
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  gap: var(--space-md);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  padding: var(--space-md) var(--space-sm);
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-text) transparent;
+}
+
+.carousel-track::-webkit-scrollbar {
+  height: 6px;
+}
+
+.carousel-track::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.carousel-track::-webkit-scrollbar-thumb {
+  background: var(--color-text);
+  border-radius: 3px;
+}
+
+.carousel-item {
+  flex: 0 0 auto;
+  width: 200px;
+  height: 200px;
+  scroll-snap-align: center;
+  cursor: pointer;
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.carousel-item img,
+.carousel-item video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.carousel-item:hover img,
+.carousel-item:hover video {
+  transform: scale(1.05);
+}
+
+.carousel-item.video::after {
+  content: '▶';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2rem;
+  color: white;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.carousel-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--color-text);
+  width: 40px;
+  height: 40px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: var(--transition);
+}
+
+.carousel-nav:hover {
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.carousel-nav.prev {
+  left: 0;
+}
+
+.carousel-nav.next {
+  right: 0;
+}
+
+.gallery-empty-msg {
+  text-align: center;
+  color: var(--color-text);
+  font-style: italic;
+  opacity: 0.7;
+  margin-top: var(--space-lg);
+}
+
+/* ========================================
+   LIGHTBOX
+   ======================================== */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.95);
+  z-index: 3000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+  padding: var(--space-xl);
+}
+
+.lightbox.show {
+  opacity: 1;
+  visibility: visible;
+}
+
+.lightbox-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  font-size: 2.5rem;
+  color: #fff;
+  cursor: pointer;
+  line-height: 1;
+  transition: transform 0.2s ease;
+  z-index: 3001;
+}
+
+.lightbox-close:hover {
+  transform: scale(1.1);
+}
+
+.lightbox img,
+.lightbox video {
+  max-width: 90%;
+  max-height: 90vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.lightbox video {
+  width: 100%;
+  max-width: 800px;
+}
+
+/* ========================================
+   BACK TO TOP
+   ======================================== */
+#back-to-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  background: rgba(255, 255, 255, 0.3);
+  backdrop-filter: blur(5px);
+  border: 1px solid var(--color-text);
+  padding: 0.75rem 1.5rem;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-text);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  z-index: 999;
+}
+
+#back-to-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* ========================================
+   HIGH RESOLUTION DESKTOPS
+   Larger fonts for better readability
+   ======================================== */
+@media (min-width: 1200px) {
+  :root {
+    --section-padding: 6rem 2rem;
+  }
+
+  body {
+    font-size: 1.125rem;
+    line-height: 1.8;
+  }
+
+  h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); }
+  h2 { font-size: clamp(1.8rem, 4vw, 2.5rem); }
+  h3 { font-size: 1.6rem; }
+
+  .nav-list a {
+    font-size: 0.95rem;
+    padding: var(--space-sm) var(--space-lg);
+  }
+
+  .hero .date {
+    font-size: 1.4rem;
+  }
+
+  .hero .location {
+    font-size: 1.1rem;
+  }
+
+  .hero-btn {
+    padding: 0.85rem 1.75rem;
+    font-size: 0.9rem;
+  }
+
+  .event-card {
+    padding: 2rem;
+  }
+
+  .event-card p {
+    font-size: 1.05rem;
+  }
+
+  .event-card li {
+    font-size: 1rem;
+  }
+
+  .quiz-text {
+    font-size: 1.1rem;
+  }
+
+  .quiz-buttons button {
+    padding: 0.7rem 1.5rem;
+    font-size: 0.95rem;
+  }
+
+  .rsvp-form label {
+    font-size: 1rem;
+  }
+
+  .rsvp-form .radio-label {
+    font-size: 1rem;
+  }
+
+  .reply-button {
+    font-size: 1rem;
+    padding: 1rem;
+  }
+
+  .upload-text {
+    font-size: 1.05rem;
+  }
+
+  .browse-button {
+    font-size: 0.95rem;
+  }
+
+  #back-to-top {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .lang-toggle {
+    font-size: 0.9rem;
+    padding: 0.6rem 1.2rem;
+  }
+
+  .lang-btn {
+    font-size: 0.95rem;
+  }
+}
+
+/* ========================================
+   RESPONSIVE - TABLET
+   ======================================== */
+@media (max-width: 900px) {
+  :root {
+    --section-padding: 3.5rem 1.25rem;
+  }
+
+  .nav-list {
+    gap: var(--space-xs);
+  }
+
+  .nav-list a {
+    padding: var(--space-xs) var(--space-sm);
+    font-size: 0.75rem;
+  }
+
+  .hero {
+    padding-top: 5rem;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 5vw, 3rem);
+  }
+
+  .hero-buttons {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .hero-btn {
+    padding: 0.65rem 1.25rem;
+    font-size: 0.75rem;
+  }
+
+  .event-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .event-card {
+    padding: var(--space-lg);
+  }
+}
+
+/* ========================================
+   RESPONSIVE - MOBILE
+   ======================================== */
+@media (max-width: 600px) {
+  :root {
+    --section-padding: 3rem 1rem;
+  }
+
+  .nav-menu {
+    padding: 0.75rem 0.5rem;
+  }
+
+  .nav-list {
+    justify-content: center;
+  }
+
+  .nav-list a {
+    padding: 0.35rem 0.5rem;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+  }
+
+  .hero {
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding: 5rem 1rem 3rem;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+    margin-bottom: var(--space-sm);
+  }
+
+  .hero .date {
+    font-size: 1rem;
+  }
+
+  .hero .location {
+    font-size: 0.8rem;
+    letter-spacing: 2px;
+    margin-bottom: var(--space-lg);
+  }
+
+  .hero-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .hero-btn {
+    width: 100%;
+    max-width: 220px;
+    padding: 0.6rem 1rem;
+  }
+
+  .hero-language {
+    bottom: 1rem;
+    left: 1rem;
+  }
+
+  #back-to-top {
+    bottom: 1rem;
+    right: 1rem;
+  }
+
+  .event-grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-md);
+  }
+
+  .event-card {
+    padding: var(--space-md);
+  }
+
+  .event-card h3 {
+    font-size: 1.1rem;
+  }
+
+  .event-card p {
+    font-size: 0.9rem;
+  }
+
+  .quiz-container {
+    padding: var(--space-md);
+    width: 100%;
+    max-width: 100%;
+  }
+
+  /* Stack quiz items vertically on mobile */
+  .quiz-text {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    align-items: flex-start;
+  }
+
+  .quiz-text select {
+    font-size: 0.85rem;
+    padding: 0.5rem 0.75rem;
+    min-width: 100%;
+    max-width: 100%;
+    width: 100%;
+    margin-top: 2px;
+  }
+
+  .quiz-text span {
+    display: block;
+    margin: var(--space-xs) 0;
+    font-size: 0.9rem;
+    line-height: 1.5;
+  }
+
+  .quiz-buttons {
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .quiz-buttons button {
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
+    width: 100%;
+    max-width: 160px;
+  }
+
+  .rsvp-form {
+    padding: 0;
+  }
+
+  .rsvp-form .form-group {
+    margin-bottom: var(--space-sm);
+  }
+
+  .rsvp-form label {
+    font-size: 0.85rem;
+  }
+
+  .rsvp-form input[type="text"],
+  .rsvp-form input[type="email"] {
+    padding: 0.65rem;
+    font-size: 0.9rem;
+  }
+
+  .rsvp-form fieldset {
+    padding: var(--space-sm);
+    margin-bottom: var(--space-sm);
+  }
+
+  .rsvp-form legend {
+    font-size: 0.8rem;
+    margin-bottom: var(--space-xs);
+  }
+
+  .radio-group {
+    flex-wrap: wrap;
+    gap: var(--space-sm);
+  }
+
+  .radio-label {
+    font-size: 0.85rem;
+  }
+
+  .reply-button {
+    padding: 0.75rem;
+    font-size: 0.85rem;
+  }
+
+  .upload-dropzone {
+    padding: 2rem 1rem;
+  }
+
+  .upload-icon {
+    font-size: 2rem;
+  }
+
+  .upload-text {
+    font-size: 0.9rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY
+   ======================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-text);
+  outline-offset: 2px;
+}
+
+/* Hide visually but keep accessible */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ========================================
+   INTERACTIVE FOOTER
+   ======================================== */
+.interactive-footer {
+  background: var(--color-bg-alt);
+  padding: var(--space-xl) var(--space-md);
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.footer-content {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-xl);
+  flex-wrap: wrap;
+}
+
+/* Weather Section */
+.weather-section {
+  display: flex;
+  gap: var(--space-md);
+}
+
+.weather-card {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  transition: var(--transition);
+  min-width: 160px;
+}
+
+.weather-card:hover {
+  background: rgba(255, 255, 255, 0.6);
+  transform: translateY(-2px);
+}
+
+.weather-icon {
+  width: 32px;
+  height: 32px;
+  flex-shrink: 0;
+}
+
+.weather-icon svg {
+  width: 100%;
+  height: 100%;
+}
+
+.weather-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.weather-location {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--color-text-muted);
+}
+
+.weather-temp {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.weather-condition {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+}
+
+/* Culture Section - Fika & Sadya */
+.culture-section {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.culture-split {
+  width: 80px;
+  height: 40px;
+  display: flex;
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.culture-half {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: var(--transition);
+}
+
+
+
+.culture-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.culture-divider {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: rgba(255, 255, 255, 0.5);
+  transform: translateX(-50%);
+}
+
+.culture-tooltip {
+  position: absolute;
+  bottom: calc(100% + var(--space-md));
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-white);
+  padding: var(--space-md) var(--space-lg);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.12);
+  min-width: 220px;
+  max-width: 280px;
+  text-align: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease;
+  z-index: 100;
+  pointer-events: none;
+}
+
+.culture-section:hover .culture-tooltip,
+.culture-split:focus + .culture-tooltip,
+.culture-tooltip:focus-within {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(-50%) translateY(-4px);
+}
+
+.culture-fact {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.culture-label {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  opacity: 0.7;
+}
+
+/* Dog Section */
+.dog-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+}
+
+.dog-paw {
+  width: 36px;
+  height: 36px;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: var(--transition);
+}
+
+.dog-paw svg {
+  width: 100%;
+  height: 100%;
+}
+
+.dog-message {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  opacity: 0;
+  transform: translateY(-4px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  white-space: nowrap;
+}
+
+.dog-section:hover .dog-message {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.dog-section:hover .dog-paw {
+  color: var(--color-text);
+  transform: scale(1.1);
+}
+
+/* Design Saga Closing */
+.design-saga {
+  text-align: center;
+  padding-top: var(--space-lg);
+  margin-top: var(--space-lg);
+  border-top: 1px solid rgba(0, 0, 0, 0.06);
+  width: 100%;
+}
+
+.design-saga p {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-bottom: var(--space-sm);
+}
+
+.design-email {
+  font-size: 0.85rem;
+  color: var(--color-text);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  transition: opacity 0.3s ease;
+}
+
+.design-email:hover {
+  opacity: 0.7;
+}
+
+/* ========================================
+   FOOTER RESPONSIVE
+   ======================================== */
+@media (max-width: 900px) {
+  .footer-content {
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .weather-section {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .culture-section {
+    order: -1;
+  }
+
+  .dog-section {
+    order: 1;
+  }
+}
+
+@media (max-width: 600px) {
+  .interactive-footer {
+    padding: var(--space-lg) var(--space-md);
+  }
+
+  .weather-section {
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .weather-card {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .design-saga p {
+    font-size: 0.85rem;
+  }
+
+  .culture-tooltip {
+    min-width: 180px;
+    padding: var(--space-sm) var(--space-md);
+  }
+
+  .culture-fact {
+    font-size: 0.85rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .culture-split:hover,
+  .dog-section:hover .dog-paw,
+  .dog-section:hover .dog-message,
+  .culture-tooltip {
+    transform: none;
+  }
+}
