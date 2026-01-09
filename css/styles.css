@@ -11,8 +11,8 @@
   /* Typography */
   --font-body: 'Futura', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: 'Migueto', cursive;
-  --font-ml: 'Noto Serif Malayalam', serif;
-  --font-ta: 'Noto Serif Tamil', serif;
+  --font-ml: 'Noto Sans Malayalam', 'Rachana', 'Meera', -apple-system, sans-serif;
+  --font-ta: 'Noto Sans Tamil', 'Inaimathi', 'Lohit Tamil', 'Hind', -apple-system, sans-serif;
 
   /* Colors - Clean, minimalist palette */
   --color-text: #000;
@@ -64,7 +64,7 @@
   font-style: italic;
 }
 
-/* Malayalam & Tamil font support */
+/* Malayalam & Tamil font support - Using Google Fonts */
 :lang(ml) { --font-body: var(--font-ml); }
 :lang(ta) { --font-body: var(--font-ta); }
 :lang(ml) h1, :lang(ml) h2, :lang(ml) h3 { font-family: var(--font-ml); }
@@ -1311,6 +1311,8 @@ section > * {
   text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--color-text-muted);
+  /* Use consistent font across all languages */
+  font-family: 'Futura', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .weather-temp {
@@ -1323,6 +1325,8 @@ section > * {
 .weather-condition {
   font-size: 0.75rem;
   color: var(--color-text-muted);
+  /* Use consistent font across all languages */
+  font-family: 'Futura', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* Culture Section - Fika & Sadya */
@@ -1401,6 +1405,8 @@ section > * {
   line-height: 1.6;
   color: var(--color-text);
   margin-bottom: var(--space-sm);
+  /* Use consistent font across all languages */
+  font-family: 'Futura', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .culture-label {
@@ -1408,6 +1414,8 @@ section > * {
   text-transform: uppercase;
   letter-spacing: 1px;
   opacity: 0.7;
+  /* Use consistent font across all languages */
+  font-family: 'Futura', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 /* Dog Section */
@@ -1438,6 +1446,8 @@ section > * {
   transform: translateY(-4px);
   transition: opacity 0.3s ease, transform 0.3s ease;
   white-space: nowrap;
+  /* Use consistent font across all languages */
+  font-family: 'Futura', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .dog-section:hover .dog-message {
@@ -1464,12 +1474,16 @@ section > * {
   color: var(--color-text-muted);
   font-style: italic;
   margin-bottom: var(--space-sm);
+  /* Use consistent font across all languages */
+  font-family: 'Futura', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .closing-text {
   font-size: 0.85rem;
   color: var(--color-text);
   transition: opacity 0.3s ease;
+  /* Use consistent font across all languages */
+  font-family: 'Futura', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 .closing-text:hover {

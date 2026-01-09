@@ -175,12 +175,12 @@ async function uploadFiles(files) {
     });
 
     if (validFiles.length === 0) {
-        showToast('Please select photos or videos only.', 'error');
+        showToast(t('upload.validating'), 'error');
         return;
     }
 
     if (APPS_SCRIPT_URL === 'YOUR_APPS_SCRIPT_URL_HERE') {
-        showToast('Please configure the Google Apps Script URL in app.js', 'error');
+        showToast(t('upload.configError'), 'error');
         console.error('Please configure APPS_SCRIPT_URL in scripts/app.js');
         return;
     }
@@ -189,7 +189,7 @@ async function uploadFiles(files) {
     uploadBtn.disabled = true;
     statusEl.innerHTML = `
         <div class="upload-progress">
-            <span>Uploading ${validFiles.length} file(s)...</span>
+            <span>${t('upload.uploading', { count: validFiles.length })}</span>
             <div class="upload-progress-bar">
                 <div class="upload-progress-fill" style="width: 0%"></div>
             </div>
@@ -219,8 +219,8 @@ async function uploadFiles(files) {
     // Show result
     if (uploadedCount > 0) {
         const message = errors.length > 0
-            ? `${uploadedCount} file(s) uploaded. Failed: ${errors.join(', ')}`
-            : `${uploadedCount} file(s) uploaded successfully!`;
+            ? t('upload.partial', { count: uploadedCount, failed: errors.join(', ') })
+            : t('upload.success', { count: uploadedCount });
         showToast(message, errors.length > 0 ? 'error' : 'success');
 
         // Clear status after delay
@@ -231,7 +231,7 @@ async function uploadFiles(files) {
         // Refresh gallery
         loadGallery();
     } else if (errors.length > 0) {
-        showToast('Upload failed. Please try again.', 'error');
+        showToast(t('upload.failed'), 'error');
         statusEl.innerHTML = '';
     }
 }
@@ -555,14 +555,14 @@ function calculateScore() {
     const dropdown10 = document.getElementById(DROPDOWN_10_ID);
 
     if (isHiddenMode && dropdown10 && dropdown10.value === HIDDEN_ANSWER_VALUE) {
-        scoreEl.textContent = "You found the hidden answers! Congrats!";
+        scoreEl.textContent = t('quiz.scoreHidden');
         scoreEl.style.color = 'green';
         // Trigger confetti for finding all hidden answers!
         if (typeof window.showConfetti === 'function') {
             window.showConfetti();
         }
     } else {
-        scoreEl.textContent = `Your score: ${score} out of 10`;
+        scoreEl.textContent = t('quiz.scoreNormal', { score: score });
         scoreEl.style.color = score >= 8 ? 'green' : score >= 6 ? 'orange' : '#e74c3c';
         // Trigger confetti for perfect score!
         if (score === 10 && typeof window.showConfetti === 'function') {
@@ -607,13 +607,13 @@ function initRsvp() {
         const originalBtnText = submitBtn.textContent;
 
         // Show loading state
-        submitBtn.textContent = 'Sending...';
+        submitBtn.textContent = t('rsvp.sending');
         submitBtn.disabled = true;
         confirmMsg.style.display = 'none';
 
         // Listen for iframe load to show confirmation
         iframe.onload = () => {
-            confirmMsg.textContent = 'Thank you! Your RSVP has been recorded.';
+            confirmMsg.textContent = t('rsvp.success');
             confirmMsg.style.display = 'block';
             form.reset();
             submitBtn.textContent = originalBtnText;
@@ -645,4 +645,98 @@ function initLanguageSwitcher() {
             }
         });
     });
+
+    // Initialize translations on page load
+    updatePageTranslations();
 }
+
+/* ========================================
+   TRANSLATION SYSTEM
+   ======================================== */
+
+// Get translation by key with placeholder support
+function t(key, placeholders = {}) {
+  const lang = getCurrentLanguage();
+  const translations = getTranslationsForLanguage(lang);
+  let text = translations[key] || key;
+
+  // Replace placeholders like {count}, {score}, etc.
+  Object.keys(placeholders).forEach(placeholder => {
+    text = text.replace(new RegExp(`{${placeholder}}`, 'g'), placeholders[placeholder]);
+  });
+
+  return text;
+}
+
+// Get translation object for current language
+function getTranslationsForLanguage(language) {
+  switch(language) {
+    case 'sv':
+      return typeof translationsSv !== 'undefined' ? translationsSv : {};
+    case 'ml':
+      return typeof translationsMl !== 'undefined' ? translationsMl : {};
+    case 'ta':
+      return typeof translationsTa !== 'undefined' ? translationsTa : {};
+    default:
+      return typeof translationsEn !== 'undefined' ? translationsEn : {};
+  }
+}
+
+// Update all translatable elements in the DOM
+function updatePageTranslations() {
+  const lang = getCurrentLanguage();
+
+  // Update all elements with data-i18n attribute
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const translation = t(key);
+
+    if (el.tagName === 'INPUT' && (el.type === 'text' || el.type === 'email')) {
+      el.placeholder = translation;
+    } else if (el.tagName === 'INPUT' && el.type === 'submit') {
+      el.value = translation;
+    } else {
+      el.textContent = translation;
+    }
+  });
+
+  // Update elements with data-i18n-placeholder
+  document.querySelectorAll('[data-i18n-placeholder]').forEach(el => {
+    const key = el.getAttribute('data-i18n-placeholder');
+    el.placeholder = t(key);
+  });
+
+  // Update elements with data-i18n-value
+  document.querySelectorAll('[data-i18n-value]').forEach(el => {
+    const key = el.getAttribute('data-i18n-value');
+    el.value = t(key);
+  });
+
+  // Update elements with data-i18n-aria-label
+  document.querySelectorAll('[data-i18n-aria-label]').forEach(el => {
+    const key = el.getAttribute('data-i18n-aria-label');
+    el.setAttribute('aria-label', t(key));
+  });
+
+  // Update date formatting based on locale
+  updateDateFormats(lang);
+}
+
+// Update date formats based on language
+function updateDateFormats(lang) {
+  const dateEl = document.querySelector('.date');
+  if (dateEl) {
+    const date = new Date('2026-05-30');
+    const locale = lang === 'sv' ? 'sv-SE' : lang === 'ml' ? 'ml-IN' : lang === 'ta' ? 'ta-IN' : 'en-US';
+    dateEl.textContent = date.toLocaleDateString(locale, {
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+}
+
+// Listen for language changes and update translations
+document.addEventListener('languageChanged', (e) => {
+  updatePageTranslations();
+});
