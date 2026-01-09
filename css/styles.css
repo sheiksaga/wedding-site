@@ -1466,16 +1466,29 @@ section > * {
   margin-bottom: var(--space-sm);
 }
 
-.design-email {
+.closing-text {
   font-size: 0.85rem;
   color: var(--color-text);
-  text-decoration: underline;
-  text-underline-offset: 4px;
   transition: opacity 0.3s ease;
 }
 
-.design-email:hover {
+.closing-text:hover {
   opacity: 0.7;
+}
+
+.closing-text a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.design-saga a {
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+.design-saga a:hover {
+  opacity: 0.7;
+  transition: opacity 0.3s ease;
 }
 
 /* ========================================

@@ -1,2 +1,5 @@
 node_modules
+gas-upload.gs
+package-lock.json
+package.json
 .claude
