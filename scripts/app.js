@@ -24,9 +24,11 @@ document.addEventListener('DOMContentLoaded', () => {
 /* ========================================
    SECTION BACKGROUND IMAGES
    Randomly assign images to sections (no duplicates)
+   Lazy load backgrounds using Intersection Observer
+   Responsive image loading based on viewport size
    ======================================== */
 function initSectionBackgrounds() {
-    const imageNames = ['AO9A7155', 'AO9A7275', 'AO9A7341', 'AO9A7440', 'AO9A7529', 'AO9A7727'];
+    const imageNames = ['AO9A7155', 'AO9A7275', 'AO9A7341', 'AO9A7440', 'AO9A7529', 'AO9A7727', 'AO9A7293'];
 
     // Map section IDs (some use id, some use class)
     const sections = [
@@ -47,7 +49,67 @@ function initSectionBackgrounds() {
         return shuffled;
     }
 
+    // Determine appropriate image size based on viewport
+    function getImageSize() {
+        const viewportWidth = window.innerWidth;
+        const viewportHeight = window.innerHeight;
+        const maxDimension = Math.max(viewportWidth, viewportHeight);
+
+        // For retina/high-DPI displays, multiply by device pixel ratio
+        const dpr = window.devicePixelRatio || 1;
+        const effectiveResolution = maxDimension * dpr;
+
+        // Select appropriate size based on effective resolution
+        if (effectiveResolution <= 800) return 'small';
+        if (effectiveResolution <= 1200) return 'medium';
+        if (effectiveResolution <= 1920) return 'large';
+        if (effectiveResolution <= 2560) return 'xlarge';
+        return 'full'; // Original resolution for very high-res displays
+    }
+
+    // Check WebP support once
+    const supportsWebP = (() => {
+        try {
+            return document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0;
+        } catch (e) {
+            return false;
+        }
+    })();
+
     const shuffledImages = shuffle(imageNames);
+
+    // Create Intersection Observer for lazy loading
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                const sectionEl = entry.target;
+                const imageName = sectionEl.dataset.bgImage;
+
+                if (imageName) {
+                    const imageSize = getImageSize();
+                    const imagePath = supportsWebP
+                        ? `images/${imageSize}/${imageName}.webp`
+                        : `images/${imageSize}/${imageName}.jpg`;
+
+                    // Preload image before setting as background
+                    const img = new Image();
+                    img.onload = () => {
+                        sectionEl.style.backgroundImage = `url('${imagePath}')`;
+                        sectionEl.classList.add('bg-loaded');
+                    };
+                    img.src = imagePath;
+
+                    // Stop observing once loaded
+                    observer.unobserve(sectionEl);
+                }
+            }
+        });
+    }, {
+        // Start loading when section is within 200px of viewport
+        rootMargin: '200px 0px',
+        // Load immediately if section is already visible
+        threshold: 0.01
+    });
 
     sections.forEach((section, index) => {
         if (index < shuffledImages.length) {
@@ -57,18 +119,11 @@ function initSectionBackgrounds() {
             }
             if (sectionEl) {
                 const imageName = shuffledImages[index];
-                // Use WebP if supported, fallback to JPEG
-                const supportsWebP = (() => {
-                    try {
-                        return document.createElement('canvas').toDataURL('image/webp').indexOf('data:image/webp') === 0;
-                    } catch (e) {
-                        return false;
-                    }
-                })();
-                const imagePath = supportsWebP
-                    ? `images/${imageName}.webp`
-                    : `images/${imageName}.jpg`;
-                sectionEl.style.backgroundImage = `url('${imagePath}')`;
+                // Store image name for lazy loading
+                sectionEl.dataset.bgImage = imageName;
+
+                // Start observing the section
+                imageObserver.observe(sectionEl);
             }
         }
     });

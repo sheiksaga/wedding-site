@@ -346,7 +346,6 @@ section > * {
   border: 1px solid var(--color-text);
   cursor: pointer;
   font-size: 0.8rem;
-  text-transform: uppercase;
   letter-spacing: 1px;
   color: var(--color-text);
 }
@@ -986,7 +985,7 @@ section > * {
   }
 
   .lang-btn {
-    font-size: 0.95rem;
+    font-size: 0.75rem;
   }
 }
 
