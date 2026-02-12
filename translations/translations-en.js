@@ -41,11 +41,15 @@ const translationsEn = {
   'wedding.hotel4': 'Slottsparken Motell - Huskvarna',
   'wedding.hotel5': 'Home Hostel Victoria - Jönköping',
   'wedding.contact': 'Contact',
-  'wedding.contact.detail1': 'Gustav (Toastmaster) : +46 76 879 95 33',
-  'wedding.contact.detail2': 'Vishvajith (Organiser) : +46 70 464 47 52',
-  'wedding.contact.detail3': 'Amanda (Organiser) : +46 72 383 06 20',
+  'wedding.contact.detail1': 'Gustav (Toastmaster)',
+  'wedding.contact.detail2': 'Vishvajith (Organiser)',
+  'wedding.contact.detail3': 'Amanda (Organiser)',
   'wedding.dresscode': 'Dress Code',
   'wedding.dresscode.details': 'Semi-formal / Ethnic',
+  'wedding.speeches': 'Speeches',
+  'wedding.speeches.details': 'We would love it if you could honor us with a speech or a performance. Please send your speech to toast@tanjasangeeth.se, where our toastmaster Gustav will handle the running order.',
+  'wedding.gifts': 'Gifts',
+  'wedding.gifts.details': 'The most beautiful gift is to get to spend this day together with you! Should you still wish to honor us with a gift, a contribution towards our dream honeymoon would be warmly appreciated.',
 
   // RSVP Form
   'rsvp.name': 'Name*',

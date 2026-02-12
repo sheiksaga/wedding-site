@@ -113,4 +113,4 @@ const quizDataSv = [
     }
 ];
 
-const quizPartsSv = [ ' och ', ' träffades i ', ' år ', '. De träffades på ', ', men lyckades hitta varandra istället. De har varit tillsammans ett tag genom många ', ' och ', ', med familjens kärlek, ', ', och deras husdjur ', ', de är nu redo att ' ];
+const quizPartsSv = [ ' och ', ' träffades i ', ' år ', '. De träffades på ', ', men lyckades hitta varandra istället. De har varit tillsammans ett tag genom många ', ' och ', '. Med familjens kärlek, ', ', och deras husdjur ', ', de är nu redo att ' ];
