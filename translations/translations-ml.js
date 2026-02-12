@@ -28,37 +28,37 @@ const translationsMl = {
 
   // Wedding Details
   'wedding.ceremony': 'ചടങ്ങ്',
-  'wedding.ceremony.time': 'രാവിലെ 2:00',
-  'wedding.ceremony.location': 'ഗ്രാൻന പള്ളി',
+  'wedding.ceremony.time': '13:00',
+  'wedding.ceremony.location': 'ജാര്സ്നാസ് പള്ളി',
   'wedding.reception': 'സ്വീകരണം',
-  'wedding.reception.time': 'വൈകുന്നേരം 6:00',
-  'wedding.reception.location': 'Åsens by',
+  'wedding.reception.time': '16:30',
+  'wedding.reception.location': 'Åsens By',
   'wedding.accommodation': 'താമസം',
-  'wedding.accommodation.details': 'ഗ്രാൻനയിലെ അടുത്തുള്ള ഹോട്ടലുകൾ',
-  'wedding.hotel1': 'ഹോട്ടൽ 1: വിവരങ്ങൾ',
-  'wedding.hotel2': 'ഹോട്ടൽ 2: വിവരങ്ങൾ',
-  'wedding.transportation': 'യാത്രാമാർഗം',
-  'wedding.transportation.details': 'ഗോതെൻബർഗിൽ നിന്ന് ബസ് ലഭ്യമാണ്',
+  'wedding.accommodation.details': 'ഇവിടെ ചില ഓപ്ഷനുകളുണ്ട്:',
+  'wedding.hotel1': 'ബൗർഗാർഡൻ - ഗ്രാൻനയിലേക്ക്',
+  'wedding.hotel2': 'ഹോട്ടൽ അമാലിയാസ് ഹുസ് - ഗ്രാൻന',
+  'wedding.hotel3': 'സ്ലോട്ട്സ്വില്ലൻ - ഹുസ്ക്വർന',
+  'wedding.hotel4': 'സ്ലോട്ട്സ്പാർകെൻ മോട്ടെൽ - ഹുസ്ക്വർന',
+  'wedding.hotel5': 'ഹോം ഹോസ്റ്റൽ വിക്ടോറിയ - യോൻചോപ്പിംഗ്',
   'wedding.contact': 'ബന്ധപ്പെടുക',
-  'wedding.contact.details': 'വിവാഹ ഏകോപകർ ലഭ്യമാണ്',
+  'wedding.contact.detail1': 'ഗുസ്താവ് (ടോസ്റ്റ്മാസ്റ്റർ) : +46 76 879 95 33',
+  'wedding.contact.detail2': 'വിഷ്വജിത് (സംഘാടകൻ) : +46 70 464 47 52',
+  'wedding.contact.detail3': 'അമാൻഡ (സംഘാടകൻ) : +46 72 383 06 20',
   'wedding.dresscode': 'വസ്ത്രരീതി',
-  'wedding.dresscode.details': 'സ്മാർട്ട് കാഷ്വൽ / അർദ്ധഔപചാരിക',
+  'wedding.dresscode.details': 'സെമി-ഫോർമൽ / പരമ്പരാഗത വസ്ത്രം',
 
   // RSVP Form
-  'rsvp.name': 'പേര്',
-  'rsvp.email': 'ഇമെയിൽ',
-  'rsvp.attending': 'പങ്കെടുക്കും?',
+  'rsvp.name': 'പേര്*',
+  'rsvp.email': 'ഇമെയിൽ*',
+  'rsvp.attending': 'പങ്കെടുക്കും?*',
   'rsvp.yes': 'അതെ',
   'rsvp.no': 'അല്ല',
-  'rsvp.dietary': 'ഭക്ഷണരീതി',
-  'rsvp.vegetarian': 'ശാകാഹാരി',
-  'rsvp.vegan': 'വെജിറ്റേറിയൻ',
-  'rsvp.none': 'ഒന്നുമില്ല',
-  'rsvp.bus': 'ഗോതെൻബർഗിൽ നിന്ന് ബസ്?',
+  'rsvp.dietary': 'ഭക്ഷണ നിയന്ത്രണങ്ങൾ*',
   'rsvp.comments': 'അഭിപ്രായങ്ങൾ',
   'rsvp.submit': 'ക്ഷണം അയയ്ക്കുക',
   'rsvp.sending': 'അയയ്ക്കുന്നു...',
   'rsvp.success': 'നന്ദി! നിങ്ങളുടെ ക്ഷണം രേഖപ്പെടുത്തി.',
+  'rsvp.error': 'എന്തോ കുഴപ്പം സംഭവിച്ചു. വീണ്ടും ശ്രമിക്കുക.',
   'rsvp.honeypot': 'ശൂന്യമായി ഉപേക്ഷിക്കുക',
 
   // Photo Gallery
@@ -123,9 +123,9 @@ const translationsMl = {
   'facts.fika': 'ഫിക',
   'facts.sadya': 'സദ്യ',
 
-  // Footer
-  'footer.dogMessage': 'നിങ്ങളോടൊപ്പം ആഘോഷിക്കാൻ ഞങ്ങൾ ആവേശഭരിതരാണ്!',
-  'footer.twoCultures': 'രണ്ട് സംസ്കാരങ്ങൾ, ഒരു കഥ.',
-  'footer.designSaga': 'ഡിസൈൻ സാഗ',
-  'footer.photography': 'ഫോട്ടോഗ്രാഫി'
+  // Footer (always in English)
+  'footer.dogMessage': 'We\'re excited to celebrate with you!',
+  'footer.twoCultures': 'Two cultures, one story.',
+  'footer.designSaga': 'Design Saga',
+  'footer.photography': 'Photography by'
 };

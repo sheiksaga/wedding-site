@@ -51,20 +51,20 @@ const quizDataSv = [
         id: 'dropdown5',
         options: [
             { text: 'Välj...', value: '' },
-            { text: 'en advokatbyråevenemang för att koppla samman unga advokater och mentorer', value: 'hidden5' },
-            { text: 'en miljöhackathon för att hjälpa företag', value: 'answer5' },
+            { text: 'ett event för att koppla samman unga advokater med mentorer', value: 'hidden5' },
+            { text: 'ett miljöhackathon för att hjälpa företag', value: 'answer5' },
             { text: 'en rymdstation på månen', value: 'boring' },
-            { text: 'ett labb medan man beräknar krångligheterna i tre-kroppars-problemet', value: 'complex' }
+            { text: 'ett labb där man beräknar "the three body problem"', value: 'complex' }
         ]
     },
     {
         id: 'dropdown6',
         options: [
             { text: 'Välj...', value: '' },
-            { text: 'slingor', value: 'answer6' },
+            { text: 'skratt', value: 'answer6' },
             { text: 'uppåt', value: 'ups' },
             { text: 'vänster', value: 'lefts' },
-            { text: 'svängar', value: 'answer6' }
+            { text: 'skämt', value: 'answer6' }
         ]
     },
     {
@@ -73,8 +73,8 @@ const quizDataSv = [
             { text: 'Välj...', value: '' },
             { text: 'höger', value: 'rights' },
             { text: 'mitten', value: 'middles' },
-            { text: 'slingor', value: 'answer7' },
-            { text: 'svängar', value: 'answer7' }
+            { text: 'skratt', value: 'answer7' },
+            { text: 'skämt', value: 'answer7' }
         ]
     },
     {
@@ -101,9 +101,9 @@ const quizDataSv = [
         id: 'dropdown10',
         options: [
             { text: 'Välj...', value: '' },
-            { text: 'låt det vara, låt det vara, låt det vara, låt det vara.', value: 'answer10' },
-            { text: 'läka världen och göra den till en bättre plats.', value: 'answer10' },
-            { text: 'resa dig upp, stå upp, stå upp för dina rättigheter.', value: 'answer10' },
+            { text: 'let it be, let it be, let it be, let it be.', value: 'answer10' },
+            { text: 'heal the world, and make it a better place.', value: 'answer10' },
+            { text: 'get up, stand up. stand up for your rights.', value: 'answer10' },
             { text: 'lyssna på fler låtar tillsammans.', value: 'answer10' }
         ],
         hiddenOptions: [
@@ -113,4 +113,4 @@ const quizDataSv = [
     }
 ];
 
-const quizPartsSv = [ ' och ', ' träffades i ', ' i ', '. De träffades på ', ', men lyckades hitta varandra istället. De har varit tillsammans ett tag genom mycket ', ' och ', ', men med familjens kärlek, ', ', och deras husdjur doggie ', ', de är nu redo att ' ];
+const quizPartsSv = [ ' och ', ' träffades i ', ' år ', '. De träffades på ', ', men lyckades hitta varandra istället. De har varit tillsammans ett tag genom många ', ' och ', ', med familjens kärlek, ', ', och deras husdjur ', ', de är nu redo att ' ];

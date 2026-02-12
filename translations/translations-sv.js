@@ -14,50 +14,51 @@ const translationsSv = {
   'nav.rsvp': 'OSA',
 
   // Hero Section
+  'hero.coupleName': 'Tanja & Sangeeth',
   'hero.location': 'Gränna, Sverige',
   'hero.btnStory': 'Vår Historia',
   'hero.btnDetails': 'Detaljer',
   'hero.btnRsvp': 'OSA',
 
   // Section Headings
-  'section.story': 'Hittills',
+  'section.story': 'Vår Historia',
   'section.wedding': 'Bröllopet',
   'section.photos': 'Foton & Videor',
   'section.rsvp': 'OSA',
 
   // Wedding Details
   'wedding.ceremony': 'Ceremoni',
-  'wedding.ceremony.time': '14:00',
-  'wedding.ceremony.location': 'Gränna Kyrka',
+  'wedding.ceremony.time': '13:00',
+  'wedding.ceremony.location': 'Järsnäs Kyrka',
   'wedding.reception': 'Mottagning',
-  'wedding.reception.time': '18:00',
-  'wedding.reception.location': 'Åsens by',
+  'wedding.reception.time': '16:30',
+  'wedding.reception.location': 'Åsens By',
   'wedding.accommodation': 'Boende',
-  'wedding.accommodation.details': 'Hotell i närheten av Gränna',
-  'wedding.hotel1': 'Hotell 1: Kontaktinformation',
-  'wedding.hotel2': 'Hotell 2: Kontaktinformation',
-  'wedding.transportation': 'Transport',
-  'wedding.transportation.details': 'Buss finns från Göteborg',
+  'wedding.accommodation.details': 'Här är några alternativ i området:',
+  'wedding.hotel1': 'Bauergården - Mot Gränna',
+  'wedding.hotel2': 'Hotel Amalias Hus - Gränna',
+  'wedding.hotel3': 'Slottsvillan - Huskvarna',
+  'wedding.hotel4': 'Slottsparken Motell - Huskvarna',
+  'wedding.hotel5': 'Home Hostel Victoria - Jönköping',
   'wedding.contact': 'Kontakt',
-  'wedding.contact.details': 'Bröllopskoordinatorer tillgängliga',
+  'wedding.contact.detail1': 'Gustav (Toastmaster) : +46 76 879 95 33',
+  'wedding.contact.detail2': 'Vishvajith (Organisatör) : +46 70 464 47 52',
+  'wedding.contact.detail3': 'Amanda (Organisatör) : +46 72 383 06 20',
   'wedding.dresscode': 'Klädkod',
-  'wedding.dresscode.details': 'Smart casual / Halvformell',
+  'wedding.dresscode.details': 'Kavaj / Ethnic',
 
   // RSVP Form
-  'rsvp.name': 'Namn',
-  'rsvp.email': 'E-post',
-  'rsvp.attending': 'Kommer du?',
+  'rsvp.name': 'Namn*',
+  'rsvp.email': 'E-post*',
+  'rsvp.attending': 'Kommer du?*',
   'rsvp.yes': 'Ja',
   'rsvp.no': 'Nej',
-  'rsvp.dietary': 'Kost',
-  'rsvp.vegetarian': 'Vegetarisk',
-  'rsvp.vegan': 'Vegan',
-  'rsvp.none': 'Ingen',
-  'rsvp.bus': 'Buss från Göteborg?',
+  'rsvp.dietary': 'Kostrestriktioner*',
   'rsvp.comments': 'Kommentarer',
   'rsvp.submit': 'Skicka OSA',
   'rsvp.sending': 'Skickar...',
   'rsvp.success': 'Tack! Din OSA har registrerats.',
+  'rsvp.error': 'Något gick fel. Försök igen.',
   'rsvp.honeypot': 'Lämna tomt',
 
   // Photo Gallery
@@ -122,9 +123,9 @@ const translationsSv = {
   'facts.fika': 'Fika',
   'facts.sadya': 'Sadya',
 
-  // Footer
-  'footer.dogMessage': 'Vi ser fram emot att fira med er!',
-  'footer.twoCultures': 'Två kulturer, en historia.',
+  // Footer (always in English)
+  'footer.dogMessage': 'We\'re excited to celebrate with you!',
+  'footer.twoCultures': 'Two cultures, one story.',
   'footer.designSaga': 'Design Saga',
-  'footer.photography': 'Fotografi av'
+  'footer.photography': 'Photography by'
 };

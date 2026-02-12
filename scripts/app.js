@@ -644,15 +644,9 @@ function initRsvp() {
     const form = document.getElementById('rsvpForm');
     if (!form) return;
 
-    // Create hidden iframe for Google Forms submission
-    const iframe = document.createElement('iframe');
-    iframe.name = 'google-form-target';
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
 
-    form.target = 'google-form-target';
-
-    form.addEventListener('submit', () => {
         // Honeypot check
         const honeypot = document.getElementById('honeypot');
         if (honeypot && honeypot.value) return;
@@ -666,15 +660,34 @@ function initRsvp() {
         submitBtn.disabled = true;
         confirmMsg.style.display = 'none';
 
-        // Listen for iframe load to show confirmation
-        iframe.onload = () => {
-            confirmMsg.textContent = t('rsvp.success');
+        try {
+            const formData = new FormData(form);
+            const response = await fetch(form.action, {
+                method: 'POST',
+                body: formData
+            });
+
+            const result = await response.json();
+
+            if (result.success) {
+                confirmMsg.textContent = t('rsvp.success');
+                confirmMsg.style.display = 'block';
+                form.reset();
+                setTimeout(() => confirmMsg.style.display = 'none', 5000);
+            } else {
+                confirmMsg.textContent = t('rsvp.error');
+                confirmMsg.style.display = 'block';
+                setTimeout(() => confirmMsg.style.display = 'none', 5000);
+            }
+        } catch (error) {
+            console.error('Form submission error:', error);
+            confirmMsg.textContent = t('rsvp.error');
             confirmMsg.style.display = 'block';
-            form.reset();
+            setTimeout(() => confirmMsg.style.display = 'none', 5000);
+        } finally {
             submitBtn.textContent = originalBtnText;
             submitBtn.disabled = false;
-            setTimeout(() => confirmMsg.style.display = 'none', 5000);
-        };
+        }
     });
 }
 

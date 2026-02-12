@@ -11,8 +11,8 @@ const quizDataMl = [
         id: 'dropdown1',
         options: [
             { text: 'തിരഞ്ഞെടുക്കുക...', value: '' },
-            { text: 'തഞ്ച', value: 'answer1' },
-            { text: 'ടെന്നിയ', value: 'Tennis' },
+            { text: 'ടാന്യ', value: 'answer1' },
+            { text: 'ടെന്നീസ്', value: 'Tennis' },
             { text: 'ടോയ്-നിയ', value: 'Toy-Nia' },
             { text: 'മിഷേൽ ഒബാമ', value: 'hidden1' }
         ]
@@ -21,7 +21,7 @@ const quizDataMl = [
         id: 'dropdown2',
         options: [
             { text: 'തിരഞ്ഞെടുക്കുക...', value: '' },
-            { text: 'സങ്കീത്', value: 'answer2' },
+            { text: 'സംഗീത്', value: 'answer2' },
             { text: 'സ്ക്വാഷ്', value: 'Squash' },
             { text: 'സോയ്-നിയ', value: 'Soy-Nia' },
             { text: 'ബരാക് ഒബാമ', value: 'hidden2' }
@@ -101,9 +101,9 @@ const quizDataMl = [
         id: 'dropdown10',
         options: [
             { text: 'തിരഞ്ഞെടുക്കുക...', value: '' },
-            { text: 'അത് അങ്ങനെ ഇരിക്കട്ടെ, അത് അങ്ങനെ ഇരിക്കട്ടെ, അത് അങ്ങനെ ഇരിക്കട്ടെ, അത് അങ്ങനെ ഇരിക്കട്ടെ.', value: 'answer10' },
-            { text: 'ലോകത്തെ സുഖപ്പെടുത്തുക, അതിനെ മികച്ച സ്ഥലമാക്കുക.', value: 'answer10' },
-            { text: 'എഴുന്നേൽക്കുക, എഴുന്നേൽക്കുക, നിങ്ങളുടെ അവകാശങ്ങൾക്കായി നിൽക്കുക.', value: 'answer10' },
+            { text: 'let it be, let it be, let it be, let it be.', value: 'answer10' },
+            { text: 'heal the world, and make it a better place.', value: 'answer10' },
+            { text: 'get up, stand up. stand up for your rights.', value: 'answer10' },
             { text: 'കൂടുതൽ ഗാനങ്ങൾ ഒരുമിച്ച് കേൾക്കുക.', value: 'answer10' }
         ],
         hiddenOptions: [

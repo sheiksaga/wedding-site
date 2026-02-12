@@ -11,8 +11,8 @@ const quizDataTa = [
         id: 'dropdown1',
         options: [
             { text: 'தேர்வு செய்...', value: '' },
-            { text: 'தன்ஜா', value: 'answer1' },
-            { text: 'டெனியா', value: 'Tennis' },
+            { text: 'தான்யா', value: 'answer1' },
+            { text: 'டென்னிஸ்', value: 'Tennis' },
             { text: 'டாய்-னியா', value: 'Toy-Nia' },
             { text: 'மிச்செல் ஒபாமா', value: 'hidden1' }
         ]
@@ -101,9 +101,9 @@ const quizDataTa = [
         id: 'dropdown10',
         options: [
             { text: 'தேர்வு செய்...', value: '' },
-            { text: 'அதை விடு, அதை விடு, அதை விடு, அதை விடு.', value: 'answer10' },
-            { text: 'உலகத்தை குணப்படுத்தி, அதை ஒரு சிறந்த இடமாக மாற்றுவோம்.', value: 'answer10' },
-            { text: 'எழுந்திரு, நிமிர்ந்து நில், உன் உரிமைக்காக நில்.', value: 'answer10' },
+            { text: 'let it be, let it be, let it be, let it be.', value: 'answer10' },
+            { text: 'heal the world, and make it a better place.', value: 'answer10' },
+            { text: 'get up, stand up. stand up for your rights.', value: 'answer10' },
             { text: 'மேலும் பல பாடல்களை ஒன்றாகக் கேள்.', value: 'answer10' }
         ],
         hiddenOptions: [
