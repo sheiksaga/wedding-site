@@ -49,7 +49,7 @@ const translationsSv = {
   'wedding.speeches': 'Tal',
   'wedding.speeches.details': 'Vi skulle älska om du ville hedra oss med ett tal eller en aktivitet. Skicka ditt tal till toast@tanjasangeeth.se, där vår toastmaster Gustav tar hand om talordningen.',
   'wedding.gifts': 'Gåvor',
-  'wedding.gifts.details': 'Den finaste gåvan är att fira denna dag tillsammans med er! Vill ni ändå bidra med en gåva så uppskattas ett bidrag till vår smekmånad.',
+  'wedding.gifts.details': 'Den finaste gåvan är att fira denna dag tillsammans med er! Vill ni ändå bidra med en gåva så uppskattas ett bidrag till vår smekmånad. Bidrag kan swishas till Amanda på +46 723830620 .',
 
   // RSVP Form
   'rsvp.name': 'Namn*',
