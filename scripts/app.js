@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initRsvp();
     initLanguageSwitcher();
     initSectionBackgrounds();
+    initLightbox();
 
     // Quiz button handlers (attached once)
     const calculateBtn = document.getElementById('calculate-btn');
@@ -386,26 +387,47 @@ function renderGallery(files) {
         item.setAttribute('role', 'button');
         item.setAttribute('tabindex', '0');
         item.setAttribute('aria-label', file.type === 'video' ? 'Play video' : 'View photo');
+        item.style.cursor = 'pointer';
 
         if (file.type === 'video') {
-            // For videos, use the direct URL from Google Drive
             item.innerHTML = `<video src="${file.url}" preload="metadata" muted></video>`;
         } else {
-            // For images, use the thumbnail URL for the gallery
             item.innerHTML = `<img src="${file.thumbnailUrl}" alt="${file.name}" loading="lazy">`;
         }
 
-        // Carousel items are now non-clickable for lightbox
-        item.setAttribute('tabindex', '-1');
-        item.style.cursor = 'default';
+        // Open lightbox on click or keyboard activation
+        item.addEventListener('click', () => openLightbox(index));
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openLightbox(index);
+            }
+        });
 
         track.appendChild(item);
     });
+
+    // Reset carousel index when gallery is re-rendered
+    carouselIndex = 0;
+    scrollCarouselToIndex(0);
 }
 
 /**
- * Initialize carousel navigation
+ * Initialize carousel navigation (index-based with infinite looping)
  */
+let carouselIndex = 0;
+
+function scrollCarouselToIndex(index) {
+    const track = document.getElementById('carouselTrack');
+    if (!track) return;
+    const items = track.querySelectorAll('.carousel-item');
+    if (!items.length) return;
+    const item = items[index];
+    if (item) {
+        item.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+}
+
 function initCarousel() {
     const prevBtn = document.getElementById('carouselPrev');
     const nextBtn = document.getElementById('carouselNext');
@@ -413,25 +435,124 @@ function initCarousel() {
 
     if (!prevBtn || !nextBtn || !track) return;
 
-    const scrollAmount = 220; // item width + gap
-
     prevBtn.addEventListener('click', () => {
-        track.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+        const items = track.querySelectorAll('.carousel-item');
+        if (!items.length) return;
+        carouselIndex = (carouselIndex - 1 + items.length) % items.length;
+        scrollCarouselToIndex(carouselIndex);
     });
 
     nextBtn.addEventListener('click', () => {
-        track.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+        const items = track.querySelectorAll('.carousel-item');
+        if (!items.length) return;
+        carouselIndex = (carouselIndex + 1) % items.length;
+        scrollCarouselToIndex(carouselIndex);
     });
 
-    // Hide nav buttons when at edges
-    track.addEventListener('scroll', () => {
-        const maxScroll = track.scrollWidth - track.clientWidth;
-        prevBtn.style.visibility = track.scrollLeft <= 0 ? 'hidden' : 'visible';
-        nextBtn.style.visibility = track.scrollLeft >= maxScroll - 5 ? 'hidden' : 'visible';
+    // Always show both buttons
+    prevBtn.style.visibility = 'visible';
+    nextBtn.style.visibility = 'visible';
+}
+
+/* ========================================
+   LIGHTBOX
+   ======================================== */
+let lightboxIndex = 0;
+
+function openLightbox(index) {
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox || !currentFiles.length) return;
+
+    lightboxIndex = index;
+    renderLightboxContent();
+    lightbox.classList.add('show');
+    document.body.style.overflow = 'hidden';
+
+    // Focus the close button for accessibility
+    const closeBtn = document.getElementById('lightboxClose');
+    if (closeBtn) closeBtn.focus();
+}
+
+function closeLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox) return;
+    lightbox.classList.remove('show');
+    document.body.style.overflow = '';
+
+    // Clear content after transition
+    setTimeout(() => {
+        const content = document.getElementById('lightboxContent');
+        if (content) content.innerHTML = '';
+    }, 300);
+}
+
+function navigateLightbox(direction) {
+    if (!currentFiles.length) return;
+    lightboxIndex = (lightboxIndex + direction + currentFiles.length) % currentFiles.length;
+    renderLightboxContent();
+}
+
+function renderLightboxContent() {
+    const content = document.getElementById('lightboxContent');
+    if (!content) return;
+
+    const file = currentFiles[lightboxIndex];
+    if (!file) return;
+
+    content.innerHTML = '';
+
+    if (file.type === 'video') {
+        const video = document.createElement('video');
+        video.src = file.url;
+        video.controls = true;
+        video.autoplay = true;
+        video.style.maxWidth = '100%';
+        video.style.maxHeight = '90vh';
+        content.appendChild(video);
+    } else {
+        const img = document.createElement('img');
+        // Use a large thumbnail URL for lightbox (file.url is a Drive view URL, not embeddable)
+        const largeUrl = file.thumbnailUrl
+            ? file.thumbnailUrl.replace(/sz=w\d+/, 'sz=w1600')
+            : `https://drive.google.com/uc?export=view&id=${file.id}`;
+        img.src = largeUrl;
+        img.alt = file.name || '';
+        img.style.maxWidth = '100%';
+        img.style.maxHeight = '90vh';
+        img.style.objectFit = 'contain';
+        content.appendChild(img);
+    }
+}
+
+function initLightbox() {
+    const lightbox = document.getElementById('lightbox');
+    if (!lightbox) return;
+
+    // Close button
+    document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+
+    // Prev / Next buttons
+    document.getElementById('lightboxPrev').addEventListener('click', (e) => {
+        e.stopPropagation();
+        navigateLightbox(-1);
+    });
+    document.getElementById('lightboxNext').addEventListener('click', (e) => {
+        e.stopPropagation();
+        navigateLightbox(1);
     });
 
-    // Initial state
-    prevBtn.style.visibility = 'hidden';
+    // Click backdrop to close
+    lightbox.addEventListener('click', (e) => {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+        if (!lightbox.classList.contains('show')) return;
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowLeft') navigateLightbox(-1);
+        if (e.key === 'ArrowRight') navigateLightbox(1);
+    });
 }
 
 /**
