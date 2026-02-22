@@ -70,6 +70,7 @@ const translationsSv = {
   'photos.empty': 'Var den första att dela ett foto!',
 
   // Upload Messages
+  'upload.text': 'Har kan ni ladda upp bilder/videos från bröllopet! 😊',
   'upload.validating': 'Välj bara foton eller videor.',
   'upload.uploading': 'Laddar upp {count} fil(er)...',
   'upload.success': '{count} fil(er) uppladdade!',

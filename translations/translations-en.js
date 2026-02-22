@@ -70,6 +70,7 @@ const translationsEn = {
   'photos.empty': 'Be the first to share a photo!',
 
   // Upload Messages
+  'upload.text': 'You can upload your images/videos from the wedding here! 😊',
   'upload.validating': 'Please select photos or videos only.',
   'upload.uploading': 'Uploading {count} file(s)...',
   'upload.success': '{count} file(s) uploaded successfully!',
