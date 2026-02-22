@@ -94,7 +94,7 @@ const quizDataSv = [
             { text: 'Bo och Sandy', value: 'hidden6' },
             { text: 'Doggie', value: 'Doggie' },
             { text: 'Nilo', value: 'answer9' },
-            { text: 'det finns ingen doggie', value: 'trick' }
+            { text: 'det finns ingen husdjur', value: 'trick' }
         ]
     },
     {

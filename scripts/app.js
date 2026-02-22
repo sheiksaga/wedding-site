@@ -409,7 +409,7 @@ function renderGallery(files) {
 
     // Reset carousel index when gallery is re-rendered
     carouselIndex = 0;
-    scrollCarouselToIndex(0);
+    // Don't scroll on initial page load - only on user navigation
 }
 
 /**
@@ -599,6 +599,24 @@ function initQuiz() {
 
 function getCurrentLanguage() {
     return document.documentElement.lang || 'en';
+}
+
+function detectDeviceLanguage() {
+    // Get browser language (e.g., 'en-US', 'sv-SE', 'ml-IN', 'ta-IN')
+    const browserLang = navigator.language || navigator.userLanguage || '';
+
+    // Extract the primary language code (before the hyphen)
+    const primaryLang = browserLang.split('-')[0].toLowerCase();
+
+    // Map to supported languages
+    const supportedLanguages = ['en', 'sv', 'ml', 'ta'];
+
+    if (supportedLanguages.includes(primaryLang)) {
+        return primaryLang;
+    }
+
+    // Default to English if language not supported
+    return 'en';
 }
 
 function setLanguage(lang) {
@@ -816,9 +834,15 @@ function initRsvp() {
    LANGUAGE SWITCHER
    ======================================== */
 function initLanguageSwitcher() {
-    // Load saved language or default to English
-    const savedLang = localStorage.getItem('language') || 'en';
-    setLanguage(savedLang);
+    // Load saved language, or detect device language, or default to English
+    const savedLang = localStorage.getItem('language');
+    if (savedLang) {
+        setLanguage(savedLang);
+    } else {
+        // Detect device language
+        const deviceLang = detectDeviceLanguage();
+        setLanguage(deviceLang);
+    }
 
     // Add click handlers to language buttons
     document.querySelectorAll('.lang-btn').forEach(btn => {
