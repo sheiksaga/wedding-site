@@ -59,7 +59,7 @@ const translationsSv = {
   'rsvp.yes': 'Ja',
   'rsvp.no': 'Nej',
   'rsvp.dietary': 'Kostrestriktioner*',
-  'rsvp.comments': 'Kommentarer',
+  'rsvp.comments': 'Skriv gärna en kul fakta vi kan berätta för de anda gästerna om dig ☺️',
   'rsvp.submit': 'OSA',
   'rsvp.sending': 'Skickar...',
   'rsvp.success': 'Tack! Din OSA har registrerats.',

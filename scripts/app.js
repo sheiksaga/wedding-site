@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initLanguageSwitcher();
     initSectionBackgrounds();
     initLightbox();
+    initProtectedContacts();
 
     // Quiz button handlers (attached once)
     const calculateBtn = document.getElementById('calculate-btn');
@@ -953,3 +954,46 @@ function updateDateFormats(lang) {
 document.addEventListener('languageChanged', (e) => {
   updatePageTranslations();
 });
+
+/* ========================================
+   PROTECTED CONTACTS (Email/Phone Obfuscation)
+   Prevents spam bots from scraping contact info
+   ======================================== */
+function initProtectedContacts() {
+  // Find all elements with data-protected attribute
+  document.querySelectorAll('[data-protected]').forEach(el => {
+    const type = el.dataset.protected;
+    const encoded = el.dataset.encoded;
+
+    if (!encoded) return;
+
+    // Decode the base64 string
+    const decoded = atob(encoded);
+
+    if (type === 'email') {
+      // Create mailto link
+      const link = document.createElement('a');
+      link.href = 'mailto:' + decoded;
+      link.textContent = decoded;
+      link.style.textDecoration = 'underline';
+      // Copy any inline styles from original element
+      if (el.style.cssText) {
+        link.style.cssText = el.style.cssText;
+      }
+      el.replaceWith(link);
+    } else if (type === 'phone') {
+      // Create tel link
+      const link = document.createElement('a');
+      link.href = 'tel:' + decoded.replace(/\s/g, '');
+      link.textContent = decoded;
+      link.style.textDecoration = 'underline';
+      if (el.style.cssText) {
+        link.style.cssText = el.style.cssText;
+      }
+      el.replaceWith(link);
+    } else if (type === 'swish') {
+      // Just display text (no link for Swish)
+      el.textContent = decoded;
+    }
+  });
+}

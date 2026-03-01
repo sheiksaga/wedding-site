@@ -59,7 +59,7 @@ const translationsEn = {
   'rsvp.yes': 'Yes',
   'rsvp.no': 'No',
   'rsvp.dietary': 'Dietary restrictions*',
-  'rsvp.comments': 'Comments',
+  'rsvp.comments': 'Please write a fun fact we could tell the other guests about you. ☺️',
   'rsvp.submit': 'Submit RSVP',
   'rsvp.sending': 'Sending...',
   'rsvp.success': 'Thank you! Your RSVP has been recorded.',
