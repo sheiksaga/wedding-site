@@ -52,6 +52,7 @@ const translationsEn = {
   'wedding.gifts.details': 'The most beautiful gift is to get to spend this day together with you! Should you still wish to honor us with a gift, a contribution towards our dream honeymoon would be warmly appreciated. Your contribution can be swished to Amanda at +46 723830620 .',
 
   // RSVP Form
+  'rsvp.disclaimer': 'Kids are very welcome! Please RSVP separately for everyone in the family.',
   'rsvp.name': 'Name*',
   'rsvp.email': 'Email*',
   'rsvp.attending': 'Attending?*',

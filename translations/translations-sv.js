@@ -52,6 +52,7 @@ const translationsSv = {
   'wedding.gifts.details': 'Den finaste gåvan är att fira denna dag tillsammans med er! Vill ni ändå bidra med en gåva så uppskattas ett bidrag till vår smekmånad. Bidrag kan swishas till Amanda på +46 723830620 .',
 
   // RSVP Form
+  'rsvp.disclaimer': ' Barn är väldit välkommna! OSA separat för alla i familjen.',
   'rsvp.name': 'Namn*',
   'rsvp.email': 'E-post*',
   'rsvp.attending': 'Kommer du?*',
