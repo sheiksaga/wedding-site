@@ -582,6 +582,11 @@ section > * {
   margin-top: var(--space-lg);
 }
 
+.rsvp-confirmation.error {
+  background: rgba(231, 76, 60, 0.1);
+  color: #e74c3c;
+}
+
 /* ========================================
    PHOTO UPLOAD
    ======================================== */

@@ -808,22 +808,35 @@ function initRsvp() {
             });
 
             const result = await response.json();
+            console.log('Web3Forms response:', result);
 
             if (result.success) {
                 confirmMsg.textContent = t('rsvp.success');
+                confirmMsg.classList.remove('error');
                 confirmMsg.style.display = 'block';
                 form.reset();
-                setTimeout(() => confirmMsg.style.display = 'none', 5000);
+                setTimeout(() => {
+                    confirmMsg.style.display = 'none';
+                    confirmMsg.classList.remove('error');
+                }, 5000);
             } else {
                 confirmMsg.textContent = t('rsvp.error');
+                confirmMsg.classList.add('error');
                 confirmMsg.style.display = 'block';
-                setTimeout(() => confirmMsg.style.display = 'none', 5000);
+                setTimeout(() => {
+                    confirmMsg.style.display = 'none';
+                    confirmMsg.classList.remove('error');
+                }, 5000);
             }
         } catch (error) {
             console.error('Form submission error:', error);
             confirmMsg.textContent = t('rsvp.error');
+            confirmMsg.classList.add('error');
             confirmMsg.style.display = 'block';
-            setTimeout(() => confirmMsg.style.display = 'none', 5000);
+            setTimeout(() => {
+                confirmMsg.style.display = 'none';
+                confirmMsg.classList.remove('error');
+            }, 5000);
         } finally {
             submitBtn.textContent = originalBtnText;
             submitBtn.disabled = false;
