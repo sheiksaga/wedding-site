@@ -63,6 +63,7 @@ function getFileList() {
       
       if (mime.includes('image') || mime.includes('video')) {
         fileList.push({
+          createdTime: file.getDateCreated().getTime(),
           id: file.getId(),
           name: file.getName(),
           type: mime.includes('video') ? 'video' : 'image',
@@ -76,7 +77,7 @@ function getFileList() {
     }
     
     // Sort newest first
-    fileList.sort((a, b) => b.name.localeCompare(a.name)); 
+    fileList.sort((a, b) => b.createdTime - a.createdTime);
     
     return createResponse({ files: fileList });
   } catch (e) {

@@ -390,11 +390,8 @@ function renderGallery(files) {
         item.setAttribute('aria-label', file.type === 'video' ? 'Play video' : 'View photo');
         item.style.cursor = 'pointer';
 
-        if (file.type === 'video') {
-            item.innerHTML = `<video src="${file.url}" preload="metadata" muted></video>`;
-        } else {
-            item.innerHTML = `<img src="${file.thumbnailUrl}" alt="${file.name}" loading="lazy">`;
-        }
+        // Drive thumbnail endpoint works for videos too; file.url is not a streamable source
+        item.innerHTML = `<img src="${file.thumbnailUrl}" alt="${file.name}" loading="lazy">`;
 
         // Open lightbox on click or keyboard activation
         item.addEventListener('click', () => openLightbox(index));
@@ -503,13 +500,14 @@ function renderLightboxContent() {
     content.innerHTML = '';
 
     if (file.type === 'video') {
-        const video = document.createElement('video');
-        video.src = file.url;
-        video.controls = true;
-        video.autoplay = true;
-        video.style.maxWidth = '100%';
-        video.style.maxHeight = '90vh';
-        content.appendChild(video);
+        // Drive won't serve raw video bytes to <video>; use its embedded player instead
+        const iframe = document.createElement('iframe');
+        iframe.src = `https://drive.google.com/file/d/${file.id}/preview`;
+        iframe.allow = 'autoplay; fullscreen';
+        iframe.style.width = 'min(90vw, 960px)';
+        iframe.style.height = 'min(70vh, 540px)';
+        iframe.style.border = 'none';
+        content.appendChild(iframe);
     } else {
         const img = document.createElement('img');
         // Use a large thumbnail URL for lightbox (file.url is a Drive view URL, not embeddable)
