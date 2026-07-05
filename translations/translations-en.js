@@ -69,6 +69,8 @@ const translationsEn = {
   // Photo Gallery
   'photos.upload': '📷 Upload Photo/Video',
   'photos.empty': 'Be the first to share a photo!',
+  'uploadPage.heading': 'Share Your Memories',
+  'uploadPage.directions': 'Tap the button below, select one or more photos or videos from your device, and wait for the upload to finish. Your memories will appear in the gallery below.',
 
   // Upload Messages
   'upload.text': 'You can upload your images/videos from the wedding here! 😊',

@@ -364,8 +364,11 @@ function loadGallery() {
  * Render gallery carousel
  */
 function renderGallery(files) {
+    renderMasonry(files);
+
     const carousel = document.getElementById('galleryCarousel');
     const track = document.getElementById('carouselTrack');
+    if (!carousel || !track) return;
     const emptyMsg = carousel.querySelector('.gallery-empty-msg');
 
     if (!files || files.length === 0) {
@@ -409,6 +412,66 @@ function renderGallery(files) {
     carouselIndex = 0;
     // Don't scroll on initial page load - only on user navigation
 }
+
+/**
+ * Render masonry grid (upload page) - no-op if #masonryGrid absent
+ */
+let masonryFiles = [];
+
+function masonryColumnCount() {
+    const w = window.innerWidth;
+    return w <= 520 ? 1 : w <= 900 ? 2 : 3;
+}
+
+function renderMasonry(files) {
+    const grid = document.getElementById('masonryGrid');
+    if (!grid) return;
+
+    masonryFiles = files || [];
+    const emptyMsg = document.getElementById('masonryEmpty');
+    grid.innerHTML = '';
+
+    if (!files || files.length === 0) {
+        if (emptyMsg) emptyMsg.style.display = 'block';
+        return;
+    }
+    if (emptyMsg) emptyMsg.style.display = 'none';
+
+    // Round-robin into columns so newest-first date order reads left-to-right
+    const columns = [];
+    for (let i = 0; i < masonryColumnCount(); i++) {
+        const col = document.createElement('div');
+        col.className = 'masonry-col';
+        columns.push(col);
+        grid.appendChild(col);
+    }
+
+    files.forEach((file, index) => {
+        const item = document.createElement('div');
+        item.className = 'masonry-item' + (file.type === 'video' ? ' video' : '');
+        item.setAttribute('role', 'button');
+        item.setAttribute('tabindex', '0');
+        item.setAttribute('aria-label', file.type === 'video' ? 'Play video' : 'View photo');
+        item.innerHTML = `<img src="${file.thumbnailUrl}" alt="${file.name}" loading="lazy">`;
+
+        item.addEventListener('click', () => openLightbox(index));
+        item.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter' || e.key === ' ') {
+                e.preventDefault();
+                openLightbox(index);
+            }
+        });
+
+        columns[index % columns.length].appendChild(item);
+    });
+}
+
+// Re-flow masonry when the column count changes
+window.addEventListener('resize', () => {
+    const grid = document.getElementById('masonryGrid');
+    if (!grid || !masonryFiles.length) return;
+    if (grid.children.length !== masonryColumnCount()) renderMasonry(masonryFiles);
+});
 
 /**
  * Initialize carousel navigation (index-based with infinite looping)

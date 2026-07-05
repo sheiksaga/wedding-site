@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Share your photos and videos from Tanja & Sangeeth's Wedding">
+    <meta name="robots" content="noindex">
+    <title>Tanja & Sangeeth - Share Your Photos</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="apple-touch-icon" href="../favicon.png">
+
+    <!-- Google Fonts for Tamil and Malayalam -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Malayalam:wght@400;600&family=Noto+Sans+Tamil:wght@400;600&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../css/styles.css">
+</head>
+<body>
+    <main>
+        <!-- Cover / Hero Section -->
+        <header class="hero upload-hero" style="background-image: url('../images/large/AO9A7341.jpg');">
+            <h1 data-i18n="hero.coupleName">Tanja & Sangeeth</h1>
+            <p class="location" data-i18n="uploadPage.heading">Share Your Memories</p>
+            <div class="event-card2">
+                <h2 data-i18n="section.photos">Photos & Videos</h2>
+                <p data-i18n="upload.text">You can upload your images/videos from the wedding here! 😊</p>
+                <p data-i18n="uploadPage.directions">Tap the button below, select one or more photos or videos from your device, and wait for the upload to finish. Your memories will appear in the gallery below.</p>
+            </div>
+            <a href="#photos" class="scroll-hint" aria-label="Scroll down to gallery">⌄</a>
+        </header>
+
+        <!-- Language Selector (fixed position) -->
+        <div class="hero-language">
+            <div class="language-selector">
+                <button class="lang-toggle" aria-expanded="false" aria-haspopup="true">
+                    <span>EN</span>
+                    <span class="arrow">▼</span>
+                </button>
+                <div class="lang-dropdown" role="menu">
+                    <button class="lang-btn" data-lang="en" role="menuitem">English</button>
+                    <button class="lang-btn" data-lang="sv" role="menuitem">Svenska</button>
+                    <button class="lang-btn" data-lang="ml" role="menuitem">മലയാളം</button>
+                    <button class="lang-btn" data-lang="ta" role="menuitem">தமிழ்</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Upload Section -->
+        <section id="photos" class="upload-page-section">
+            <div class="upload-wrapper">
+                <button id="uploadBtn" class="upload-button" data-i18n="photos.upload">
+                    📷 Upload Photo/Video
+                </button>
+                <input type="file" id="fileInput" accept="image/*,video/*" multiple>
+            </div>
+            <div id="uploadStatus" class="upload-status"></div>
+
+            <!-- Masonry Gallery -->
+            <div class="masonry-grid" id="masonryGrid">
+                <!-- Uploaded images load here, newest first -->
+            </div>
+            <p class="gallery-empty-msg" id="masonryEmpty" style="display: none;" data-i18n="photos.empty">Be the first to share a photo!</p>
+        </section>
+
+        <!-- Closing text -->
+        <footer class="interactive-footer">
+            <div class="design-saga">
+              <p>Two cultures, one story.</p>
+              <a href="https://sheiksaga.github.io/ds-hem/" class="closing-text">Design Saga</a>
+              <p>Photography by <a href="https://www.vildafotografier.se">Sofia Lodén</a>.</p>
+            </div>
+        </footer>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Image viewer">
+        <button class="lightbox-close" id="lightboxClose" aria-label="Close">Close</button>
+        <button class="lightbox-nav lightbox-prev" id="lightboxPrev" aria-label="Previous">&#8249;</button>
+        <div class="lightbox-content" id="lightboxContent"></div>
+        <button class="lightbox-nav lightbox-next" id="lightboxNext" aria-label="Next">&#8250;</button>
+    </div>
+
+    <!-- Translation Data Files (must load before app.js) -->
+    <script src="../translations/translations-en.js"></script>
+    <script src="../translations/translations-sv.js"></script>
+    <script src="../translations/translations-ml.js"></script>
+    <script src="../translations/translations-ta.js"></script>
+
+    <!-- Main Application Script (all inits guard on element existence) -->
+    <script src="../scripts/app.js"></script>
+</body>
+</html>

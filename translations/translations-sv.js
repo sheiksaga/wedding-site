@@ -69,6 +69,8 @@ const translationsSv = {
   // Photo Gallery
   'photos.upload': '📷 Ladda upp foto/video',
   'photos.empty': 'Var den första att dela ett foto!',
+  'uploadPage.heading': 'Dela era minnen',
+  'uploadPage.directions': 'Tryck på knappen nedan, välj en eller flera bilder eller videor från din enhet och vänta tills uppladdningen är klar. Era minnen dyker upp i galleriet nedan.',
 
   // Upload Messages
   'upload.text': 'Har kan ni ladda upp bilder/videos från bröllopet! 😊',
